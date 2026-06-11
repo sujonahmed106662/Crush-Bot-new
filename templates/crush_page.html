@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>💕 {{ crush_name }} - Someone Has a Crush on You!</title>
+    <meta name="description" content="Someone special has something to tell you...">
+    <meta property="og:title" content="💕 Someone Has a Crush on You!">
+    <meta property="og:description" content="Open to see who has a crush on you...">
+    <link rel="stylesheet" href="/static/css/crush.css">
+</head>
+<body {% if bg_image %}style="background-image: url('{{ bg_image }}'); background-size: cover; background-position: center;"{% endif %}>
+    
+    <!-- Floating Emojis Container -->
+    <div class="floating-emojis" id="floatingEmojis"></div>
+    
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Envelope Animation -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body">
+                <div class="heart-seal">💌</div>
+            </div>
+            <p class="tap-text">Tap to open</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Paper Card -->
+        <div class="paper-card">
+            <div class="card-decoration top-left"></div>
+            <div class="card-decoration top-right"></div>
+            <div class="card-decoration bottom-left"></div>
+            <div class="card-decoration bottom-right"></div>
+            
+            <!-- Washi Tape Effect -->
+            <div class="washi-tape top"></div>
+            <div class="washi-tape bottom"></div>
+
+            <div class="card-content">
+                <div class="crush-header">
+                    <span class="sparkle">✨</span>
+                    <h1 class="crush-title">Hey, <span class="crush-name" id="crushNameText"></span>!</h1>
+                    <span class="sparkle">✨</span>
+                </div>
+
+                <div class="message-container">
+                    <p class="message-text" id="messageText"></p>
+                </div>
+
+                <div class="from-section">
+                    <p class="from-text">~ With love from <span class="creator-name">{{ creator_name }}</span> 💕</p>
+                </div>
+
+                <div class="question-section">
+                    <p class="question">Do you feel the same way? 🥺</p>
+                </div>
+
+                <div class="buttons-container">
+                    <button class="btn btn-yes" id="btnYes" onclick="handleYes()">
+                        <span class="btn-emoji">❤️</span>
+                        <span class="btn-text">Yes</span>
+                    </button>
+                    <button class="btn btn-no" id="btnNo">
+                        <span class="btn-emoji">💔</span>
+                        <span class="btn-text">No</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Overlay -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="confetti-container" id="confettiContainer"></div>
+        <div class="celebration-card">
+            <h1 class="celebration-title">🎉 SHE SAID YES ❤️</h1>
+            <p class="celebration-subtitle">Love is in the air!</p>
+            <div class="celebration-hearts">💕💕💕</div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    {% if bg_music %}
+    <audio id="bgMusic" loop preload="auto">
+        <source src="{{ bg_music }}" type="audio/mpeg">
+    </audio>
+    {% endif %}
+
+    <!-- Celebration Music -->
+    <audio id="celebrationMusic" preload="auto">
+        <source src="/static/music/celebration.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Page data
+        const PAGE_DATA = {
+            linkId: "{{ link_id }}",
+            crushName: "{{ crush_name }}",
+            creatorName: "{{ creator_name }}",
+            message: "{{ message }}",
+            emoji: "{{ emoji }}",
+            bgMusic: "{{ bg_music }}"
+        };
+    </script>
+    <script src="/static/js/crush.js"></script>
+</body>
+</html>
